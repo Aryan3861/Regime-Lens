@@ -92,10 +92,7 @@ GOOD_IF_UP = {
     "sentiment_deviation", "RSI", "drawdown",
 }
 
-
-# =============================================================================
 # PIPELINE (run once per symbol, cached)
-# =============================================================================
 
 _CACHE = {}
 _KEY_LOCKS = {}
@@ -397,7 +394,7 @@ def regime_payload(symbol):
     key = p["regime_key"]
     latest = p["latest"]
 
-    # --- story ---
+    # --- story 
     interp = list(p["explanation"]["Interpretation"].head(3))
     narrative = (
         f"Confidence is {p['confidence_pct']:.0f}%. "

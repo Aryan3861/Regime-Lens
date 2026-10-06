@@ -1,4 +1,3 @@
-
 import {
   API_CONFIG,
   instrumentsCatalog,
@@ -67,9 +66,9 @@ export async function loadDashboardSymbol(symbol = "SPX") {
   }
 }
 
-/**
- * Renders the Market Header bar (e.g., S&P 500 | 6,481.52 | +1.24% ▲ Today | Market Open | Last updated: 09:42:18)
- */
+
+//  Renders the Market Header bar 
+ 
 function renderMarketHeader(marketRes) {
   if (!marketRes) return;
 
@@ -110,10 +109,8 @@ function renderMarketHeader(marketRes) {
   if (statusEl) statusEl.textContent = marketRes.marketStatus;
   if (updatedEl) updatedEl.textContent = marketRes.lastUpdated;
 }
-
-/**
- * Renders Mini Market Cards (S&P 500, NASDAQ, DOW, VIX)
- */
+ // Renders Mini Market Cards 
+ 
 function renderMiniMarketCards(cards = [], activeSym = "SPX") {
   const container = document.getElementById("mini-market-cards-mount");
   if (!container || !cards.length) return;
@@ -159,10 +156,8 @@ function renderMiniMarketCards(cards = [], activeSym = "SPX") {
     });
   });
 }
-
-/**
- * Initializes Sidebar collapse toggle, Alert dismiss, and Settings modal
- */
+ // Initializes Sidebar collapse toggle, Alert dismiss, and Settings modal
+ 
 function initShellControls() {
   const shell = document.getElementById("app-shell");
   const sidebarToggle = document.getElementById("sidebar-toggle-btn");
@@ -222,10 +217,8 @@ function initShellControls() {
     });
   }
 }
+// Top Search Omnibox with '/' keyboard shortcut
 
-/**
- * Top Search Omnibox with '/' keyboard shortcut
- */
 function initSearchOmnibox() {
   const input = document.getElementById("global-search-input");
   const dropdown = document.getElementById("global-search-dropdown");
@@ -418,10 +411,8 @@ function buildInstrumentFromWatchlist(wlItem) {
     }
   };
 }
-
-/**
- * Hydrates dedicated secondary pages (markets.html, regime.html, why.html, risk.html)
- */
+ // Hydrates dedicated secondary pages (markets.html, regime.html, why.html, risk.html)
+ 
 function initSecondaryPageViews() {
   const sectorTableBody = document.getElementById("sector-matrix-tbody");
   if (sectorTableBody) {

@@ -6,7 +6,6 @@
   flex-wrap: wrap;
   gap: 12px;
 }
-
 .timeframe-group {
   display: inline-flex;
   align-items: center;
@@ -16,7 +15,6 @@
   padding: 2px;
   gap: 2px;
 }
-
 .tf-btn {
   padding: 4px 9px;
   font-size: var(--text-tiny);
@@ -26,16 +24,13 @@
   transition: background-color var(--transition-fast), color var(--transition-fast);
   font-variant-numeric: tabular-nums;
 }
-
 .tf-btn:hover {
   color: var(--text-primary);
 }
-
 .tf-btn.active {
   background-color: var(--bg-hover);
   color: var(--text-primary);
 }
-
 .chart-legend-inline {
   display: flex;
   align-items: center;
@@ -43,23 +38,19 @@
   font-size: var(--text-tiny);
   color: var(--text-secondary);
 }
-
 .legend-dot-item {
   display: inline-flex;
   align-items: center;
   gap: 6px;
 }
-
 .legend-swatch {
   width: 8px;
   height: 8px;
   border-radius: 2px;
 }
-
 .legend-swatch.value { background-color: var(--regime-value); }
 .legend-swatch.hype { background-color: var(--regime-hype); }
 .legend-swatch.panic { background-color: var(--regime-panic); }
-
 .chart-stage {
   position: relative;
   width: 100%;
@@ -70,14 +61,12 @@
   border-radius: var(--radius-md);
   overflow: hidden;
 }
-
 .regime-canvas {
   width: 100%;
   height: 100%;
   display: block;
   cursor: crosshair;
 }
-
 /* Regime Step Ribbon below chart */
 .regime-step-ribbon {
   display: flex;
@@ -90,7 +79,6 @@
   border: 1px solid var(--border-color);
   background-color: var(--bg-primary);
 }
-
 .ribbon-segment {
   display: flex;
   align-items: center;
@@ -105,29 +93,24 @@
   overflow: hidden;
   white-space: nowrap;
 }
-
 .ribbon-segment:last-child {
   border-right: none;
 }
-
 .ribbon-segment.value {
   background-color: var(--regime-value-bg);
   color: var(--regime-value);
   border-top: 2px solid var(--regime-value);
 }
-
 .ribbon-segment.hype {
   background-color: var(--regime-hype-bg);
   color: var(--regime-hype);
   border-top: 2px solid var(--regime-hype);
 }
-
 .ribbon-segment.panic {
   background-color: var(--regime-panic-bg);
   color: var(--regime-panic);
   border-top: 2px solid var(--regime-panic);
 }
-
 /* Interactive Floating Chart Tooltip */
 .chart-tooltip {
   position: absolute;
@@ -145,12 +128,10 @@
   transition: opacity 120ms ease, transform 120ms ease;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
 }
-
 .chart-tooltip.visible {
   opacity: 1;
   transform: translateY(0);
 }
-
 .tt-date {
   font-size: var(--text-tiny);
   font-weight: 600;
@@ -159,7 +140,6 @@
   padding-bottom: 5px;
   border-bottom: 1px solid var(--border-subtle);
 }
-
 .tt-grid {
   display: grid;
   grid-template-columns: auto 1fr;

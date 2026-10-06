@@ -8,7 +8,6 @@ REQUIRED_COLUMNS = [
     "Close",
     "Volume",
 ]
-
 def _clean_yfinance_dataframe(df):
 #    Normalize yfinance output into a simple OHLCV dataframe.
     if df is None or df.empty:

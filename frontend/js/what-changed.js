@@ -1,7 +1,3 @@
-/* ==========================================================================
-   REGIME AI — What Changed & Risk Thermometer Module (js/what-changed.js)
-   ========================================================================== */
-
 export function renderWhatChangedAndRisk(payload) {
   if (!payload) return;
 
@@ -64,25 +60,20 @@ export function renderRiskThermometer(risk) {
   const badgeEl = document.getElementById("risk-level-badge");
   const subListEl = document.getElementById("risk-submetrics-list");
   const summaryEl = document.getElementById("risk-summary-text");
-
   if (scoreEl) {
     scoreEl.textContent = `${risk.score}`;
   }
-
   if (markerEl) {
     markerEl.style.left = `${Math.min(98, Math.max(2, risk.score))}%`;
   }
-
   if (badgeEl) {
     const badgeTone = risk.score < 45 ? "value" : risk.score < 68 ? "warning" : "panic";
     badgeEl.className = `regime-badge ${badgeTone}`;
     badgeEl.textContent = risk.label || (risk.score < 45 ? "LOW RISK" : "ELEVATED");
   }
-
   if (summaryEl && risk.summary) {
     summaryEl.textContent = risk.summary;
   }
-
   if (subListEl && risk.factors) {
     const toneClassMap = {
       value: "regime-text-value",

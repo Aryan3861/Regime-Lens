@@ -298,13 +298,10 @@ input, select {
   0% { background-color: rgba(245, 247, 250, 0.12); }
   100% { background-color: transparent; }
 }
-
 .tick-flash {
   animation: valuePulse 600ms ease-out;
   border-radius: 2px;
 }
-
-/* Reduced Motion Preference */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

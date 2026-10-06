@@ -1,11 +1,5 @@
-/* ==========================================================================
-   REGIME AI — Why Engine Module (js/why-engine.js)
-   Translates ML factor contributions into plain-English causal explanations
-   ========================================================================== */
-
 export function renderWhyEngine(whyPayload) {
   if (!whyPayload || !whyPayload.drivers) return;
-
   const listEl = document.getElementById("why-drivers-list");
   if (listEl) {
     listEl.innerHTML = whyPayload.drivers

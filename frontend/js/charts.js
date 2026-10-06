@@ -1,4 +1,3 @@
-
 import { getTimelineSeries } from "./data.js";
 
 const REGIME_COLORS = {
@@ -343,10 +342,8 @@ export function drawTimelineCanvas() {
     ctx.stroke();
   }
 }
-
-/**
- * Generates an inline SVG sparkline for Mini Market Cards
- */
+ // Generates an inline SVG sparkline for Mini Market Cards
+ 
 export function buildSparklineSvg(values = [], regimeKey = "value") {
   if (!values.length) return "";
   const width = 78;

@@ -1,7 +1,3 @@
-/* ==========================================================================
-   REGIME AI — Interactive Watchlist Module (js/watchlist.js)
-   ========================================================================== */
-
 let currentWatchlist = [];
 let activeFilter = "ALL";
 let activeSort = { key: null, asc: false };

@@ -1,11 +1,4 @@
-/* ==========================================================================
-   REGIME AI — Hero Regime, Market Story & Regime Flow Module (js/regime.js)
-   ========================================================================== */
 
-/**
- * Renders the Hero Current Market Regime card, Probability bars,
- * Market Story narrative + WATCH box, Regime Flow diagram, and Transition Alert.
- */
 export function renderRegimeSection(regimePayload) {
   if (!regimePayload) return;
 

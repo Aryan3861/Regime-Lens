@@ -1,20 +1,9 @@
-
 export const API_CONFIG = {
-  useLiveBackend: true, // Toggle to true when FastAPI server is mounted at baseUrl
+  useLiveBackend: true,
   baseUrl: "/api",
   simulatedLatencyMs: 0
 };
 
-/**
- * Primary Benchmark & Multi-Asset Intelligence Dataset
- * Mirrors FastAPI endpoints:
- *   GET /api/market?symbol=SPX
- *   GET /api/regime?symbol=SPX
- *   GET /api/why?symbol=SPX
- *   GET /api/what-changed?symbol=SPX
- *   GET /api/risk?symbol=SPX
- *   GET /api/watchlist
- */
 export const marketData = {
   symbol: "SPX",
   name: "S&P 500",
@@ -23,7 +12,6 @@ export const marketData = {
   direction: "up",
   marketStatus: "Market Open",
   lastUpdated: "09:42:18",
-
   regime: {
     current: "Value-Driven",
     key: "value",
@@ -46,7 +34,6 @@ export const marketData = {
       { name: "VOLATILITY", state: "LOW", tone: "controlled" }
     ]
   },
-
   transitionAlert: {
     active: true,
     from: "VALUE-DRIVEN",
@@ -56,7 +43,6 @@ export const marketData = {
     detectedAgo: "12 minutes ago",
     primaryDriver: "Momentum acceleration"
   },
-
   drivers: [
     {
       name: "Momentum",
@@ -109,7 +95,6 @@ export const marketData = {
       technical: { zScore: "+1.38σ", weight: "0.14", window: "50D SMA Spread" }
     }
   ],
-
   whatChanged: {
     deltas: [
       { name: "Momentum", change: "+14.2%", arrow: "↑", tone: "up", period: "vs 5D avg" },
@@ -147,10 +132,6 @@ export const marketData = {
   }
 };
 
-/**
- * Multi-Instrument Registry (Mini Market Cards + Watchlist Instruments)
- * Selecting any instrument updates the entire intelligence dashboard
- */
 export const instrumentsCatalog = {
   SPX: {
     symbol: "SPX",
@@ -725,7 +706,7 @@ export const watchlistData = [
 
 /**
  * Generates deterministic, realistic Regime Timeline series for any symbol & timeframe
- * Includes exact tooltip reference point (e.g., May 06, 2026 — Price: $621.42 / 6,214.20, Regime: Hype, Confidence: 87%, Main driver: Momentum acceleration)
+ * Includes exact tooltip reference point 
  */
 export function getTimelineSeries(symbol = "SPX", timeframe = "6M") {
   const inst = instrumentsCatalog[symbol] || instrumentsCatalog.SPX;
@@ -743,7 +724,6 @@ export function getTimelineSeries(symbol = "SPX", timeframe = "6M") {
   const count = pointsCountMap[timeframe] || 72;
 
   // Define realistic regime transition zones along the timeline
-  // Format: [startRatio, endRatio, regimeName, regimeKey, driverLabel, baseConf]
   let zones;
   if (inst.regimeKey === "value") {
     zones = [
@@ -858,10 +838,8 @@ export const sectorRegimeMatrix = [
   { sector: "Utilities", etf: "XLU", price: 81.40, change: 0.38, regime: "Value-Driven", key: "value", confidence: 84, momentum: "+6.2%", volatility: "11.9%", risk: "LOW" }
 ];
 
-/* ==========================================================================
-   FASTAPI-READY ASYNCHRONOUS ABSTRACTION FUNCTIONS
-   Replace mock resolution by flipping API_CONFIG.useLiveBackend = true
-   ========================================================================== */
+
+  // FASTAPI-READY ASYNCHRONOUS ABSTRACTION FUNCTIONS
 
 async function requestEndpoint(path, fallbackResolver) {
   if (API_CONFIG.useLiveBackend) {

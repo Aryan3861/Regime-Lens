@@ -1,4 +1,3 @@
-
 .app-shell {
   display: grid;
   grid-template-rows: var(--header-height) 1fr;
@@ -9,11 +8,9 @@
   min-height: 100vh;
   transition: grid-template-columns var(--transition-normal);
 }
-
 .app-shell.sidebar-collapsed {
   grid-template-columns: var(--sidebar-collapsed-width) 1fr;
 }
-
 /* 1. TOP NAVIGATION BAR */
 .top-nav {
   grid-area: topnav;

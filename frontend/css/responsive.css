@@ -1,22 +1,16 @@
-
-/* Laptop Breakpoint (1024px - 1280px) */
 @media (max-width: 1280px) {
   .grid-hero-row {
     grid-template-columns: 1.1fr 1fr;
   }
-
   .grid-hero-row > .panel-card:nth-child(3) {
     grid-column: 1 / -1;
   }
-
   .grid-timeline-row {
     grid-template-columns: 1fr;
   }
-
   .grid-intelligence-row {
     grid-template-columns: 1fr 1fr;
   }
-
   .grid-intelligence-row > .panel-card:nth-child(3) {
     grid-column: 1 / -1;
   }
