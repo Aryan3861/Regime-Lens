@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+pandas
+yfinance
+requests
+certifi
+joblib
+scikit-learn==1.7.2
+scipy
+numpy

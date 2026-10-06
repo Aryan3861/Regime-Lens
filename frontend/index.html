@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REGIME AI — Market Regime Intelligence Dashboard</title>
+  <meta name="description" content="Institutional AI Market Regime Intelligence Platform. Don't just show the market. Explain the market." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/charts.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <a href="#main-workspace" class="skip-link">Skip to main market intelligence</a>
+
+  <div class="app-shell" id="app-shell">
+    <!-- 1. TOP NAVIGATION BAR -->
+    <header class="top-nav" role="banner">
+      <div class="nav-left">
+        <button type="button" class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Toggle navigation sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+          </svg>
+        </button>
+        <a href="index.html" class="brand-logo" aria-label="REGIME AI Home">
+          <img src="assets/icons/logo.svg" alt="" class="brand-logo-icon" />
+          <span>REGIME</span>
+          <span class="brand-tag">AI</span>
+        </a>
+      </div>
+
+      <div class="nav-center" role="search">
+        <div class="search-wrapper">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            type="search"
+            id="global-search-input"
+            class="search-input"
+            placeholder="Search stocks, ETFs, indices..."
+            aria-label="Search stocks, ETFs, indices"
+            autocomplete="off"
+          />
+          <kbd class="search-kbd" aria-hidden="true">/</kbd>
+        </div>
+        <div class="search-dropdown" id="global-search-dropdown" role="listbox" aria-label="Search suggestions"></div>
+      </div>
+
+      <div class="nav-right">
+        <div class="market-status-pill" aria-label="Exchange session status">
+          <span>NYSE / NASDAQ</span>
+          <span class="tabular">• 09:30–16:00 EST</span>
+        </div>
+        <div class="live-indicator" aria-live="polite">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>LIVE</span>
+        </div>
+        <button type="button" class="nav-icon-btn" id="notif-trigger-btn" aria-label="Regime transition notifications" data-open-settings>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+          <span class="notif-badge" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="profile-btn" aria-label="User profile and FastAPI settings" data-open-settings>
+          <span class="profile-avatar">QM</span>
+          <span>Quant Desk</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 2. SLIM MODERN SIDEBAR -->
+    <aside class="sidebar" aria-label="Primary Navigation">
+      <nav class="sidebar-nav-group">
+        <div class="sidebar-section-label">Intelligence</div>
+        <a href="index.html" class="sidebar-link active" aria-current="page">
+          <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="9" rx="1.5"></rect>
+            <rect x="14" y="3" width="7" height="5" rx="1.5"></rect>
+            <rect x="14" y="12" width="7" height="9" rx="1.5"></rect>
+            <rect x="3" y="16" width="7" height="5" rx="1.5"></rect>
+          </svg>
+          <span class="sidebar-label">Overview</span>
+        </a>
+        <a href="markets.html" class="sidebar-link">
+          <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+            <polyline points="16 7 22 7 22 13"></polyline>
+          </svg>
+          <span class="sidebar-label">Markets</span>
+        </a>
+        <a href="watchlist.html" class="sidebar-link">
+          <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+          </svg>
+          <span class="sidebar-label">Watchlist</span>
+        </a>
+        <a href="regime.html" class="sidebar-link">
+          <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="6" cy="6" r="3"></circle>
+            <circle cx="18" cy="6" r="3"></circle>
+            <circle cx="12" cy="18" r="3"></circle>
+            <line x1="8.7" y1="7.5" x2="10.7" y2="15.3"></line>
+            <line x1="15.3" y1="7.5" x2="13.3" y2="15.3"></line>
+            <line x1="9" y1="6" x2="15" y2="6"></line>
+          </svg>
+          <span class="sidebar-label">Regime Map</span>
+        </a>
+        <a href="why.html" class="sidebar-link">
+          <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+          <span class="sidebar-label">Why Engine</span>
+        </a>
+        <a href="#what-changed-section" class="sidebar-link">
+          <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+          </svg>
+          <span class="sidebar-label">What Changed</span>
+        </a>
+        <a href="risk.html" class="sidebar-link">
+          <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <span class="sidebar-label">Risk</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="api-mode-box">
+          <div class="api-mode-header">
+            <span>DATA PIPELINE</span>
+            <span id="sidebar-api-status" class="regime-text-value">Mock Schema</span>
+          </div>
+          <div>FastAPI Contract v1.0 Ready</div>
+        </div>
+        <a href="#settings" class="sidebar-link" data-open-settings>
+          <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span class="sidebar-label">Settings</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- 3. MAIN WORKSPACE CONTENT -->
+    <main class="main-content" id="main-workspace">
+      <!-- Empty / API Error State Banner (Hidden by default, toggleable for state verification) -->
+      <div class="state-banner" id="state-banner" role="alert">
+        <div>
+          <strong id="state-banner-msg">Market data temporarily unavailable.</strong>
+          <span class="supporting-text"> — Showing cached snapshot from FastAPI state store.</span>
+        </div>
+        <button type="button" class="sim-btn" id="state-banner-close">Dismiss</button>
+      </div>
+
+      <!-- LEVEL 1: MARKET HEADER -->
+      <section class="market-header-bar" aria-label="Active Market Summary">
+        <div class="market-primary-quote">
+          <div class="market-instrument-group">
+            <h1 class="market-symbol-title" id="header-instrument-name">S&amp;P 500</h1>
+            <span class="market-ticker-pill" id="header-instrument-ticker">SPX</span>
+          </div>
+          <div class="market-price-large tabular" id="header-instrument-price">6,481.52</div>
+          <div class="market-change-group">
+            <span class="pct-val dir-up tabular" id="header-instrument-change">+1.24%</span>
+            <span class="market-today-tag dir-up" id="header-instrument-dir">▲ Today</span>
+          </div>
+        </div>
+
+        <div class="market-meta-right">
+          <div class="market-session-info">
+            <span class="session-status-dot" id="header-market-status">Market Open</span>
+            <span class="session-divider" aria-hidden="true"></span>
+            <span>Last updated: <strong class="tabular" id="header-last-updated">09:42:18</strong></span>
+          </div>
+          <div class="sim-toolbar" aria-label="Interactive State Controls">
+            <button type="button" class="sim-btn" id="sim-tick-btn" title="Simulate real-time price & factor update">Simulate Tick</button>
+            <button type="button" class="sim-btn" id="sim-transition-btn" title="Cycle between Value-Driven, Hype, and Panic regimes">Cycle Regime</button>
+            <button type="button" class="sim-btn" id="sim-skeleton-btn" title="Preview loading skeleton state">Skeleton</button>
+            <button type="button" class="sim-btn" id="sim-error-btn" title="Preview API error state">API State</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12. SUBTLE INLINE REGIME TRANSITION ALERT -->
+      <section class="transition-alert-bar" id="transition-alert-bar" aria-label="Regime Transition Alert">
+        <div class="transition-alert-left">
+          <span class="transition-tag">⚡ REGIME TRANSITION</span>
+          <span class="transition-flow-pill">
+            <span class="regime-text-value" id="alert-from-regime">VALUE-DRIVEN</span>
+            <span>→</span>
+            <span class="regime-text-hype" id="alert-to-regime">HYPE</span>
+          </span>
+          <div class="transition-meta-items">
+            <span>Confidence: <strong class="tabular" id="alert-confidence">84%</strong></span>
+            <span>Detected: <strong id="alert-detected">12 minutes ago</strong></span>
+            <span>Primary driver: <strong id="alert-driver">Momentum acceleration</strong></span>
+          </div>
+        </div>
+        <button type="button" class="alert-dismiss-btn" id="alert-dismiss-btn" aria-label="Dismiss transition alert">Dismiss</button>
+      </section>
+
+      <!-- 11. MINI MARKET CARDS (S&P 500, NASDAQ, DOW, VIX) -->
+      <section class="grid-mini-cards" id="mini-market-cards-mount" aria-label="Major Market Indices"></section>
+
+      <!-- LEVEL 2 & LEVEL 3: HERO CURRENT REGIME + MARKET STORY + UNIQUE REGIME FLOW -->
+      <section class="grid-hero-row" aria-label="Current Market Regime Intelligence">
+        <!-- 4. HERO COMPONENT — CURRENT REGIME -->
+        <article class="panel-card hero-regime-card regime-state-value" id="hero-regime-card">
+          <div>
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <h2 class="panel-title">CURRENT MARKET REGIME</h2>
+                <span class="panel-subtitle">Real-time classification &amp; model confidence</span>
+              </div>
+              <span class="regime-badge value" id="hero-regime-badge">Value-Driven • 91%</span>
+            </div>
+
+            <div class="hero-regime-main">
+              <div>
+                <div class="hero-regime-name regime-text-value" id="hero-regime-name">VALUE-DRIVEN</div>
+                <span class="meta-text">Supported institutional price discovery</span>
+              </div>
+              <div class="hero-confidence-block">
+                <div class="hero-confidence-value tabular" id="hero-confidence-val">91%</div>
+                <div class="hero-confidence-label">Confidence</div>
+              </div>
+            </div>
+
+            <div class="probability-list" aria-label="Regime classification probabilities">
+              <div class="prob-row active-prob" id="prob-row-value">
+                <span class="prob-label">Value-Driven</span>
+                <div class="prob-track" role="progressbar" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100" aria-label="Value-Driven probability">
+                  <div class="prob-fill value" id="prob-fill-value"></div>
+                </div>
+                <span class="prob-pct tabular" id="prob-pct-value">91%</span>
+              </div>
+
+              <div class="prob-row" id="prob-row-hype">
+                <span class="prob-label">Hype</span>
+                <div class="prob-track" role="progressbar" aria-valuenow="6" aria-valuemin="0" aria-valuemax="100" aria-label="Hype probability">
+                  <div class="prob-fill hype" id="prob-fill-hype"></div>
+                </div>
+                <span class="prob-pct tabular" id="prob-pct-hype">6%</span>
+              </div>
+
+              <div class="prob-row" id="prob-row-panic">
+                <span class="prob-label">Panic</span>
+                <div class="prob-track" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="100" aria-label="Panic probability">
+                  <div class="prob-fill panic" id="prob-fill-panic"></div>
+                </div>
+                <span class="prob-pct tabular" id="prob-pct-panic">3%</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. MARKET STORY -->
+        <article class="panel-card">
+          <div>
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <h2 class="panel-title">MARKET STORY</h2>
+                <span class="panel-subtitle">Plain-English synthesis of current market behavior</span>
+              </div>
+            </div>
+
+            <h3 class="story-headline" id="story-headline">"The market is currently Value-Driven."</h3>
+            <p class="story-body" id="story-narrative">
+              Momentum remains positive while volatility is relatively controlled. Sentiment has improved over recent sessions, suggesting the current move is supported rather than purely speculative.
+            </p>
+          </div>
+
+          <div class="story-watch-box">
+            <div class="story-watch-label">WATCH</div>
+            <p class="story-watch-text" id="story-watch-text">
+              An increase in volatility combined with deteriorating sentiment could indicate a regime transition.
+            </p>
+          </div>
+        </article>
+
+        <!-- 21. UNIQUE VISUAL FEATURE — REGIME FLOW -->
+        <article class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <h2 class="panel-title">REGIME FLOW</h2>
+              <span class="panel-subtitle">Structural driver-to-regime architecture</span>
+            </div>
+          </div>
+          <div class="regime-flow-container" id="regime-flow-mount" aria-label="Regime Flow diagram"></div>
+        </article>
+      </section>
+
+      <!-- 6. SIGNATURE FEATURE — REGIME TIMELINE -->
+      <section class="panel-card" aria-label="Interactive Price and Regime Timeline">
+        <div class="timeline-controls-bar">
+          <div class="panel-title-group">
+            <h2 class="panel-title">REGIME TIMELINE — PRICE &amp; STRUCTURAL TRANSITIONS</h2>
+            <span class="panel-subtitle">Hover across the timeline to inspect historical regime classifications, confidence &amp; primary drivers</span>
+          </div>
+
+          <div class="timeline-right-group">
+            <div class="chart-legend-inline" aria-label="Regime color legend">
+              <span class="legend-dot-item"><span class="legend-swatch value"></span>Value-Driven</span>
+              <span class="legend-dot-item"><span class="legend-swatch hype"></span>Hype</span>
+              <span class="legend-dot-item"><span class="legend-swatch panic"></span>Panic</span>
+            </div>
+
+            <div class="timeframe-group" role="group" aria-label="Chart timeframe selector">
+              <button type="button" class="tf-btn" data-tf="1D">1D</button>
+              <button type="button" class="tf-btn" data-tf="1W">1W</button>
+              <button type="button" class="tf-btn" data-tf="1M">1M</button>
+              <button type="button" class="tf-btn" data-tf="3M">3M</button>
+              <button type="button" class="tf-btn active" data-tf="6M">6M</button>
+              <button type="button" class="tf-btn" data-tf="1Y">1Y</button>
+              <button type="button" class="tf-btn" data-tf="5Y">5Y</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-stage">
+          <canvas id="regime-timeline-canvas" class="regime-canvas" aria-label="Price and market regime timeline chart"></canvas>
+
+          <!-- Interactive Tooltip -->
+          <div class="chart-tooltip" id="chart-tooltip" role="status" aria-live="polite">
+            <div class="tt-date tabular" id="tt-date">May 06, 2026</div>
+            <div class="tt-grid">
+              <span class="tt-key">Price:</span>
+              <span class="tt-val tabular" id="tt-price">$621.42</span>
+              <span class="tt-key">Regime:</span>
+              <span class="tt-val regime-text-hype" id="tt-regime">Hype</span>
+              <span class="tt-key">Confidence:</span>
+              <span class="tt-val tabular" id="tt-confidence">87%</span>
+              <span class="tt-key">Main driver:</span>
+              <span class="tt-val" id="tt-driver">Momentum acceleration</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Regime Transition Step Ribbon -->
+        <div class="regime-step-ribbon" id="regime-step-ribbon" aria-label="Historical regime transition ribbon"></div>
+      </section>
+
+      <!-- LEVEL 4, LEVEL 5, LEVEL 6: WHY ENGINE + WHAT CHANGED + RISK THERMOMETER -->
+      <section class="grid-intelligence-row" id="what-changed-section" aria-label="Why Engine, What Changed, and Market Risk">
+        <!-- 7. WHY ENGINE -->
+        <article class="panel-card">
+          <div>
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <h2 class="panel-title">WHY IS THE MARKET IN THIS REGIME?</h2>
+                <span class="panel-subtitle">Key drivers &amp; model contributions in plain language</span>
+              </div>
+            </div>
+
+            <div class="driver-list" id="why-drivers-list"></div>
+          </div>
+
+          <div class="tech-details-toggle">
+            <button type="button" class="tech-toggle-btn" id="tech-toggle-btn" aria-expanded="false" aria-controls="tech-details-content">
+              <span class="tech-toggle-label">View technical details</span>
+              <svg class="tech-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="tech-details-content" id="tech-details-content"></div>
+          </div>
+        </article>
+
+        <!-- 8. WHAT CHANGED? -->
+        <article class="panel-card">
+          <div>
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <h2 class="panel-title">WHAT CHANGED?</h2>
+                <span class="panel-subtitle">Recent factor rate-of-change &amp; regime pressure</span>
+              </div>
+            </div>
+
+            <div class="delta-grid" id="what-changed-deltas"></div>
+
+            <div class="pressure-section">
+              <div class="pressure-title">REGIME PRESSURE</div>
+              <div class="pressure-rows">
+                <div class="pressure-row">
+                  <span class="prob-label">Value-Driven</span>
+                  <div class="prob-track" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" aria-label="Value-Driven pressure">
+                    <div class="prob-fill value" id="pressure-fill-value"></div>
+                  </div>
+                  <span class="prob-pct tabular" id="pressure-val-value">72</span>
+                </div>
+
+                <div class="pressure-row">
+                  <span class="prob-label">Hype</span>
+                  <div class="prob-track" role="progressbar" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100" aria-label="Hype pressure">
+                    <div class="prob-fill hype" id="pressure-fill-hype"></div>
+                  </div>
+                  <span class="prob-pct tabular" id="pressure-val-hype">38</span>
+                </div>
+
+                <div class="pressure-row">
+                  <span class="prob-label">Panic</span>
+                  <div class="prob-track" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100" aria-label="Panic pressure">
+                    <div class="prob-fill panic" id="pressure-fill-panic"></div>
+                  </div>
+                  <span class="prob-pct tabular" id="pressure-val-panic">14</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-footer-divider">
+            <p class="supporting-text" id="what-changed-summary">
+              Market conditions remain stable. Momentum is strengthening while volatility continues to compress.
+            </p>
+          </div>
+        </article>
+
+        <!-- 9. RISK THERMOMETER -->
+        <article class="panel-card">
+          <div>
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <h2 class="panel-title">MARKET RISK</h2>
+                <span class="panel-subtitle">Composite stress &amp; regime fragility index</span>
+              </div>
+              <span class="regime-badge value" id="risk-level-badge">MODERATE-LOW</span>
+            </div>
+
+            <div class="risk-thermometer-box">
+              <div class="risk-score-header">
+                <span class="label-caps">Current Risk Index</span>
+                <div>
+                  <span class="risk-score-number tabular" id="risk-score-val">42</span>
+                  <span class="risk-score-max tabular"> / 100</span>
+                </div>
+              </div>
+
+              <div class="risk-scale-labels" aria-hidden="true">
+                <span>LOW</span>
+                <span>MODERATE</span>
+                <span>HIGH</span>
+              </div>
+
+              <div class="risk-track-line" role="meter" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100" aria-label="Market risk thermometer">
+                <div class="risk-marker-dot" id="risk-marker-dot"></div>
+              </div>
+            </div>
+
+            <div class="risk-submetrics-list" id="risk-submetrics-list"></div>
+          </div>
+
+          <div class="panel-footer-divider">
+            <p class="supporting-text" id="risk-summary-text">
+              Systemic drawdown risk remains contained; monitor sentiment expansion in growth leaders.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- 10. INTERACTIVE WATCHLIST -->
+      <section class="panel-card" aria-label="Market Regime Watchlist">
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <h2 class="panel-title">WATCHLIST — MULTI-ASSET REGIME MONITOR</h2>
+            <span class="panel-subtitle">Click any row to load its full regime intelligence, timeline &amp; drivers above</span>
+          </div>
+
+          <div class="watchlist-controls" role="group" aria-label="Filter watchlist by regime">
+            <button type="button" class="filter-pill active" data-wl-filter="ALL">All</button>
+            <button type="button" class="filter-pill" data-wl-filter="VALUE">Value-Driven</button>
+            <button type="button" class="filter-pill" data-wl-filter="HYPE">Hype</button>
+            <button type="button" class="filter-pill" data-wl-filter="PANIC">Panic</button>
+          </div>
+        </div>
+
+        <div class="watchlist-table-wrap">
+          <table class="watchlist-table">
+            <thead>
+              <tr>
+                <th data-wl-sort="symbol" scope="col">Symbol</th>
+                <th data-wl-sort="price" scope="col">Price</th>
+                <th data-wl-sort="change" scope="col">Change</th>
+                <th data-wl-sort="regime" scope="col">Regime</th>
+                <th data-wl-sort="confidence" scope="col">Confidence</th>
+                <th data-wl-sort="risk" scope="col">Risk</th>
+                <th scope="col">Trend</th>
+              </tr>
+            </thead>
+            <tbody id="watchlist-tbody"></tbody>
+          </table>
+        </div>
+
+        <div class="wl-hover-detail" id="watchlist-hover-detail" aria-live="polite"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- SETTINGS & FASTAPI INTEGRATION MODAL -->
+  <div class="modal-backdrop" id="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 id="settings-modal-title" class="modal-title-heading">FastAPI Integration &amp; Platform Settings</h2>
+        <button type="button" class="sim-btn" id="close-settings-modal">Close</button>
+      </div>
+      <p class="supporting-text">
+        REGIME AI is architected with a clean asynchronous data layer in <code>js/data.js</code>. Toggle live backend mode when your FastAPI server is running to switch from local deterministic schemas to live REST endpoints.
+      </p>
+      <div class="endpoint-list">
+        <div class="endpoint-item"><span>GET /api/market</span><span class="regime-text-value">Ready</span></div>
+        <div class="endpoint-item"><span>GET /api/regime</span><span class="regime-text-value">Ready</span></div>
+        <div class="endpoint-item"><span>GET /api/why</span><span class="regime-text-value">Ready</span></div>
+        <div class="endpoint-item"><span>GET /api/what-changed</span><span class="regime-text-value">Ready</span></div>
+        <div class="endpoint-item"><span>GET /api/watchlist</span><span class="regime-text-value">Ready</span></div>
+      </div>
+      <label class="modal-checkbox-label">
+        <input type="checkbox" id="fastapi-live-toggle" />
+        <span>Enable live <code>fetch("/api/...")</code> requests</span>
+      </label>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

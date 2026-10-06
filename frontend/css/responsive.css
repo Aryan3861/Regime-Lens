@@ -1,0 +1,156 @@
+
+/* Laptop Breakpoint (1024px - 1280px) */
+@media (max-width: 1280px) {
+  .grid-hero-row {
+    grid-template-columns: 1.1fr 1fr;
+  }
+
+  .grid-hero-row > .panel-card:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+
+  .grid-timeline-row {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-intelligence-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-intelligence-row > .panel-card:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Tablet Breakpoint (768px - 1023px) — 2-Column Layout */
+@media (max-width: 1023px) {
+  .app-shell {
+    grid-template-columns: var(--sidebar-collapsed-width) 1fr;
+  }
+
+  .sidebar .sidebar-label,
+  .sidebar .sidebar-section-label,
+  .sidebar .api-mode-box {
+    display: none;
+  }
+
+  .sidebar .sidebar-link {
+    justify-content: center;
+    padding: 9px 0;
+  }
+
+  .grid-mini-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-hero-row,
+  .grid-intelligence-row,
+  .grid-two-col,
+  .grid-three-col {
+    grid-template-columns: 1fr;
+  }
+
+  .market-status-pill {
+    display: none;
+  }
+}
+
+/* Mobile Breakpoint (< 768px) — Single-Column Reorganized Hierarchy */
+@media (max-width: 767px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "topnav"
+      "main";
+  }
+
+  .sidebar {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    bottom: 0;
+    width: 240px;
+    z-index: 300;
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal);
+    box-shadow: 12px 0 32px rgba(0, 0, 0, 0.7);
+  }
+
+  .app-shell.mobile-nav-open .sidebar {
+    transform: translateX(0);
+  }
+
+  .sidebar .sidebar-label,
+  .sidebar .sidebar-section-label,
+  .sidebar .api-mode-box {
+    display: block;
+  }
+
+  .sidebar .sidebar-link {
+    justify-content: flex-start;
+    padding: 9px 12px;
+  }
+
+  .main-content {
+    padding: 12px 12px 28px;
+    gap: 12px;
+  }
+
+  .nav-left {
+    min-width: auto;
+  }
+
+  .brand-tag {
+    display: none;
+  }
+
+  .search-kbd {
+    display: none;
+  }
+
+  .grid-mini-cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .market-header-bar {
+    padding: 12px 14px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .market-meta-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .chart-stage {
+    height: 240px;
+  }
+
+  .prob-row {
+    grid-template-columns: 92px 1fr 38px;
+  }
+
+  .delta-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tech-kv-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-mini-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-center {
+    max-width: 180px;
+  }
+
+  .profile-btn span {
+    display: none;
+  }
+}

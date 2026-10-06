@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regime Map &amp; Transition Topology — REGIME AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/charts.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell" id="app-shell">
+    <header class="top-nav" role="banner">
+      <div class="nav-left">
+        <button type="button" class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Toggle navigation sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+        </button>
+        <a href="index.html" class="brand-logo">
+          <img src="assets/icons/logo.svg" alt="" class="brand-logo-icon" />
+          <span>REGIME</span>
+          <span class="brand-tag">AI</span>
+        </a>
+      </div>
+      <div class="nav-center" role="search">
+        <div class="search-wrapper">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="search" id="global-search-input" class="search-input" placeholder="Search stocks, ETFs, indices..." aria-label="Search stocks, ETFs, indices" />
+          <kbd class="search-kbd">/</kbd>
+        </div>
+        <div class="search-dropdown" id="global-search-dropdown"></div>
+      </div>
+      <div class="nav-right">
+        <div class="live-indicator"><span class="live-dot"></span><span>LIVE</span></div>
+      </div>
+    </header>
+
+    <aside class="sidebar" aria-label="Primary Navigation">
+      <nav class="sidebar-nav-group">
+        <div class="sidebar-section-label">Intelligence</div>
+        <a href="index.html" class="sidebar-link">
+          <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+          <span class="sidebar-label">Overview</span>
+        </a>
+        <a href="markets.html" class="sidebar-link">
+          <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          <span class="sidebar-label">Markets</span>
+        </a>
+        <a href="watchlist.html" class="sidebar-link">
+          <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span class="sidebar-label">Watchlist</span>
+        </a>
+        <a href="regime.html" class="sidebar-link active" aria-current="page">
+          <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="12" cy="18" r="3"/><line x1="8.7" y1="7.5" x2="10.7" y2="15.3"/><line x1="15.3" y1="7.5" x2="13.3" y2="15.3"/><line x1="9" y1="6" x2="15" y2="6"/></svg>
+          <span class="sidebar-label">Regime Map</span>
+        </a>
+        <a href="why.html" class="sidebar-link">
+          <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <span class="sidebar-label">Why Engine</span>
+        </a>
+        <a href="risk.html" class="sidebar-link">
+          <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="sidebar-label">Risk</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <section class="grid-hero-row">
+        <article class="panel-card hero-regime-card regime-state-value" id="hero-regime-card">
+          <div>
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <h1 class="panel-title">CURRENT MARKET REGIME</h1>
+                <span class="panel-subtitle">Markov state classification &amp; persistence</span>
+              </div>
+              <span class="regime-badge value" id="hero-regime-badge">Value-Driven • 91%</span>
+            </div>
+            <div class="hero-regime-main">
+              <div class="hero-regime-name regime-text-value" id="hero-regime-name">VALUE-DRIVEN</div>
+              <div class="hero-confidence-block">
+                <div class="hero-confidence-value tabular" id="hero-confidence-val">91%</div>
+                <div class="hero-confidence-label">Confidence</div>
+              </div>
+            </div>
+            <div class="probability-list">
+              <div class="prob-row active-prob" id="prob-row-value"><span class="prob-label">Value-Driven</span><div class="prob-track"><div class="prob-fill value" id="prob-fill-value"></div></div><span class="prob-pct tabular" id="prob-pct-value">91%</span></div>
+              <div class="prob-row" id="prob-row-hype"><span class="prob-label">Hype</span><div class="prob-track"><div class="prob-fill hype" id="prob-fill-hype"></div></div><span class="prob-pct tabular" id="prob-pct-hype">6%</span></div>
+              <div class="prob-row" id="prob-row-panic"><span class="prob-label">Panic</span><div class="prob-track"><div class="prob-fill panic" id="prob-fill-panic"></div></div><span class="prob-pct tabular" id="prob-pct-panic">3%</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <h2 class="panel-title">REGIME FLOW TOPOLOGY</h2>
+              <span class="panel-subtitle">Structural factor synthesis</span>
+            </div>
+          </div>
+          <div class="regime-flow-container" id="regime-flow-mount"></div>
+        </article>
+
+        <article class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <h2 class="panel-title">5-DAY TRANSITION MATRIX</h2>
+              <span class="panel-subtitle">Empirical regime persistence probabilities</span>
+            </div>
+          </div>
+          <div class="watchlist-table-wrap">
+            <table class="watchlist-table">
+              <thead>
+                <tr>
+                  <th>From \ To</th>
+                  <th>Value</th>
+                  <th>Hype</th>
+                  <th>Panic</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="regime-badge value">Value</span></td>
+                  <td class="tabular fw-700 regime-text-value">88.4%</td>
+                  <td class="tabular">8.2%</td>
+                  <td class="tabular">3.4%</td>
+                </tr>
+                <tr>
+                  <td><span class="regime-badge hype">Hype</span></td>
+                  <td class="tabular">14.1%</td>
+                  <td class="tabular fw-700 regime-text-hype">71.6%</td>
+                  <td class="tabular">14.3%</td>
+                </tr>
+                <tr>
+                  <td><span class="regime-badge panic">Panic</span></td>
+                  <td class="tabular">19.5%</td>
+                  <td class="tabular">4.8%</td>
+                  <td class="tabular fw-700 regime-text-panic">75.7%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel-card">
+        <div class="timeline-controls-bar">
+          <div class="panel-title-group">
+            <h2 class="panel-title">HISTORICAL REGIME TIMELINE</h2>
+            <span class="panel-subtitle">Inspect structural transitions across multi-year horizons</span>
+          </div>
+          <div class="timeframe-group">
+            <button type="button" class="tf-btn" data-tf="1D">1D</button>
+            <button type="button" class="tf-btn" data-tf="1W">1W</button>
+            <button type="button" class="tf-btn" data-tf="1M">1M</button>
+            <button type="button" class="tf-btn" data-tf="3M">3M</button>
+            <button type="button" class="tf-btn active" data-tf="6M">6M</button>
+            <button type="button" class="tf-btn" data-tf="1Y">1Y</button>
+            <button type="button" class="tf-btn" data-tf="5Y">5Y</button>
+          </div>
+        </div>
+        <div class="chart-stage">
+          <canvas id="regime-timeline-canvas" class="regime-canvas"></canvas>
+          <div class="chart-tooltip" id="chart-tooltip">
+            <div class="tt-date tabular" id="tt-date">May 06, 2026</div>
+            <div class="tt-grid">
+              <span class="tt-key">Price:</span><span class="tt-val tabular" id="tt-price">$621.42</span>
+              <span class="tt-key">Regime:</span><span class="tt-val" id="tt-regime">Hype</span>
+              <span class="tt-key">Confidence:</span><span class="tt-val tabular" id="tt-confidence">87%</span>
+              <span class="tt-key">Main driver:</span><span class="tt-val" id="tt-driver">Momentum acceleration</span>
+            </div>
+          </div>
+        </div>
+        <div class="regime-step-ribbon" id="regime-step-ribbon"></div>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
